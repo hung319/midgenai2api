@@ -9,10 +9,6 @@ FROM oven/bun:1 as base
 # 2. Thiết lập thư mục làm việc
 WORKDIR /app
 
-# 3. Copy file quản lý dependency trước (để tận dụng Docker layer caching)
-# Dấu * ở bun.lockb để tránh lỗi nếu file lock chưa tồn tại
-COPY package.json bun.lockb* ./
-
 # 4. Cài đặt dependencies (Production only)
 # Nếu project chưa có deps nào ngoài Bun, lệnh này vẫn chạy an toàn
 RUN bun install --production
